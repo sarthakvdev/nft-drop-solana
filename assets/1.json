@@ -1,0 +1,24 @@
+{
+  "name": "Itachi Uchiha",
+  "symbol": "",
+  "description": "The legendary Shinobi of Konohagakure, Itachi of the Sharingan, Ex-Anbu Black Ops & Akatsuki",
+  "image": "1.png",
+  "collection": {
+    "name": "Sharingan OGs",
+    "family": "Uchiha"
+  },
+  "properties": {
+    "files": [
+      {
+        "uri": "1.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "Gq9NpcoLV53Gd5XcwaLuax3QoqVjz5CqRsaJiFRpNapu",
+        "share": 100
+      }
+    ]
+  }
+}

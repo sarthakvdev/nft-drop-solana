@@ -1,0 +1,24 @@
+{
+  "name": "Obito Uchiha",
+  "symbol": "",
+  "description": "Traitor of Konohagakure, student of Madara Uchiha, Leader of Akatsuki",
+  "image": "2.png",
+  "collection": {
+    "name": "Sharingan OGs",
+    "family": "Uchiha"
+  },
+  "properties": {
+    "files": [
+      {
+        "uri": "2.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "Gq9NpcoLV53Gd5XcwaLuax3QoqVjz5CqRsaJiFRpNapu",
+        "share": 100
+      }
+    ]
+  }
+}
