@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CandyMachine from "./CandyMachine";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 
@@ -7,7 +8,7 @@ const TWITTER_HANDLE = "0xSarthak";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
-  const [walletAddress, setWalletAddress] = useState(null)
+  const [walletAddress, setWalletAddress] = useState(null);
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -38,19 +39,16 @@ const App = () => {
   const connectWallet = async () => {
     const { solana } = window;
 
-    if(solana) {
+    if (solana) {
       const response = await solana.connect();
       console.log("Connected w/ Public Key: ", response.publicKey.toString());
       setWalletAddress(response.publicKey.toString());
-    } else {
-
     }
-
   };
 
   // components
   const RenderNotConnectedContainer = () => (
-    <button 
+    <button
       className="cta-button connect-wallet-button"
       onClick={connectWallet}
     >
@@ -72,8 +70,10 @@ const App = () => {
         <div className="header-container">
           <p className="header">🍭 Candy Drop</p>
           <p className="sub-text">NFT drop machine with fair mint</p>
-          { !walletAddress && <RenderNotConnectedContainer />}
+          {!walletAddress && <RenderNotConnectedContainer />}
         </div>
+        {/* Check the wallet address */}
+        {walletAddress && <CandyMachine walletAddress={window.solana} />}
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
