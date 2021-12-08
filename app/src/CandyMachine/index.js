@@ -116,6 +116,8 @@ const CandyMachine = ({ walletAddress }) => {
 
   const mintToken = async () => {
     try {
+      setIsMinting(true);
+
       const mint = web3.Keypair.generate();
       const token = await getTokenWallet(
         walletAddress.publicKey,
@@ -200,7 +202,9 @@ const CandyMachine = ({ walletAddress }) => {
 
             const { result } = notification;
             if (!result.err) {
-              console.log("NFT Minted!");
+              console.log("NFT Minted!"); // coz it's minted so
+              setIsMinting(false);
+              await getCandyMachineState();
             }
           }
         },
@@ -316,6 +320,8 @@ const CandyMachine = ({ walletAddress }) => {
       goLiveDateTimeString,
     });
 
+    setIsLoadingMints(true);
+
     const data = await fetchHashTable(
       process.env.REACT_APP_CANDY_MACHINE_ID,
       true
@@ -334,6 +340,8 @@ const CandyMachine = ({ walletAddress }) => {
         }
       }
     }
+
+    setIsLoadingMints(false);
   };
 
   // Component
@@ -373,15 +381,19 @@ const CandyMachine = ({ walletAddress }) => {
       <div className="machine-container">
         <DropTimer />
         <p>{`Items Minted: ${machineStats.itemsRedeemed}/${machineStats.itemsAvailable}`}</p>
-        <div className="btn-container">
-          <button 
-            className="cta-button mint-button" 
-            onClick={mintToken}
-            disabled={isMinting}
-          >
-            Mint NFT
-          </button>
-        </div>
+        {machineStats.itemsAvailable === machineStats.itemsRedeemed ? (
+          <p className="sub-text">Sold out ⌛️</p>
+        ) : (
+          <div className="btn-container">
+            <button
+              className="cta-button mint-button"
+              onClick={mintToken}
+              disabled={isMinting}
+            >
+              Mint NFT
+            </button>
+          </div>
+        )}
         {mints.length > 0 && <MintedItems />}
         {isLoadingMints && <p>Loading Mints...</p>}
       </div>
